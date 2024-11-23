@@ -1,3 +1,4 @@
+import 'package:dashboard/features/dashboard/presentation/view/widgets/dashboard_view_body.dart';
 import 'package:flutter/material.dart';
 
 class DashboardView extends StatelessWidget {
@@ -11,9 +12,8 @@ class DashboardView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Dashboard'),
       ),
-      body: const Center(
-        child: Text('Dashboard'),
-      ),
+      body: DashboardViewBody()
+     
     );
   }
 }
