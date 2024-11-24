@@ -4,6 +4,7 @@ import 'package:dashboard/core/utils/common/elvated_button.dart';
 import 'package:dashboard/core/utils/constants/colors.dart';
 import 'package:dashboard/core/utils/constants/font_manger.dart';
 import 'package:dashboard/core/utils/constants/styles_manger.dart';
+import 'package:dashboard/features/add_product/domain/entities/add_product_entity.dart';
 import 'package:dashboard/features/add_product/presentation/view/widgets/custom_check_box.dart';
 import 'package:dashboard/features/add_product/presentation/view/widgets/image_pik_widget.dart';
 import 'package:flutter/material.dart';
@@ -103,7 +104,16 @@ class AddProductViewBody extends StatelessWidget {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     if (imageFile != null) {
-                      Navigator.pop(context);
+
+                      AddProductEntity addProductEntity = AddProductEntity(
+                        productName: productName,
+                        code: code,
+                        description: description,
+                        price: price,
+                        imageFile: imageFile!,
+                        isFeatured: isFeatured,
+                      );
+                      
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
