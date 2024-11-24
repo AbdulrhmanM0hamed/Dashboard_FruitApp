@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickWidget extends StatefulWidget {
-  const ImagePickWidget({super.key});
+  const ImagePickWidget({super.key, required this.onFileChanged});
+    final ValueChanged<File?> onFileChanged;
 
   @override
   State<ImagePickWidget> createState() => _ImagePickWidgetState();
 }
 
 class _ImagePickWidgetState extends State<ImagePickWidget> {
-  
+
   File? _imageFile;
   final picker = ImagePicker();
 
@@ -20,6 +21,7 @@ class _ImagePickWidgetState extends State<ImagePickWidget> {
     setState(() {
       if (pickedFile != null) {
         _imageFile = File(pickedFile.path);
+        widget.onFileChanged(_imageFile);
       } else {
         print('No image selected.');
       }
@@ -68,6 +70,7 @@ class _ImagePickWidgetState extends State<ImagePickWidget> {
                   onTap: () {
                     setState(() {
                       _imageFile = null;
+                      widget.onFileChanged(null);
                     });
                   },
                   child: Container(
