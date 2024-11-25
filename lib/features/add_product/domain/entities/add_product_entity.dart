@@ -7,7 +7,7 @@ class AddProductEntity {
   final num price;
   final File imageFile;
   final bool isFeatured;
-  final String? imageUrl;
+   String? imageUrl;
 
   AddProductEntity({
     required this.productName,

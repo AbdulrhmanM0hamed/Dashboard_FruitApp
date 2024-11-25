@@ -5,7 +5,7 @@ import 'package:dashboard/features/add_product/domain/entities/add_product_entit
 
 class AddProductRepoImpl implements AddProductRepo {
   @override
-  Future<Either<Failuer, AddProductEntity>> addProduct(AddProductEntity addProductRepository) {
+  Future<Either<Failuer, void>> addProduct(AddProductEntity addProductRepository) {
     // TODO: implement addProduct
     throw UnimplementedError();
   }
