@@ -12,7 +12,7 @@ class SupabaseStorageServices implements StorageService {
     try {
       await storage.from('FruitApp').upload('$path/$fileName', file);
       final downloadUrl =
-          storage.from('FruitApp').getPublicUrl('$path/$fileName');
+          storage.from('FruitApp').createSignedUrl('$path/$fileName' , 60 * 60 * 24);
       return downloadUrl;
     } catch (e) {
       print('Error details: $e');
