@@ -28,16 +28,19 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  flutter_bloc: ^8.1.4
+  cloud_firestore: ^5.5.0
+  appwrite: ^13.0.0
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
   firebase_core: ^3.8.0
   firebase_storage: ^12.3.6
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.4
   get_it: ^8.0.2
   image_picker: ^1.1.2
   path: ^1.9.0
+  supabase_flutter: ^2.8.1
 
 dev_dependencies:
   flutter_lints: ^4.0.0

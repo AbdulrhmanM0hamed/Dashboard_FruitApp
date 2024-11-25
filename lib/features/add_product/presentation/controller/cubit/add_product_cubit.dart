@@ -10,25 +10,30 @@ class AddProductCubit extends Cubit<AddProductState> {
   final ImageRepo imageRepo;
   final AddProductRepo addProductRepo;
 
-  AddProductCubit(this.imageRepo, this.addProductRepo) : super(AddProductInitial());
-  
+  AddProductCubit(this.imageRepo, this.addProductRepo)
+      : super(AddProductInitial());
+
   Future<void> addProduct(AddProductEntity addProductEntity) async {
     emit(AddProductLoading());
-     var result = await imageRepo.uploadImage(addProductEntity.imageFile);
 
-     result.fold((l) => emit(AddProductFailure(errMessage: l.errMessage)),
-     
+    // رفع الصورة
+    var imageUploadResult =
+        await imageRepo.uploadImage(addProductEntity.imageFile);
+
+    imageUploadResult.fold(
+      (failure) => emit(AddProductFailure(errMessage: failure.errMessage)),
       (url) async {
+        addProductEntity.imageUrl = url; // تعيين رابط الصورة
 
-        addProductEntity.imageUrl = url;
-        var result = await addProductRepo.addProduct(addProductEntity);
+        // إضافة المنتج الآن
+        var addProductResult =
+            await addProductRepo.addProduct(addProductEntity);
 
-        result.fold((l) => emit(AddProductFailure(errMessage: l.errMessage)), 
-        (r) => emit(AddProductSuccess()));
-
-   
-     });
-     
+        addProductResult.fold(
+          (failure) => emit(AddProductFailure(errMessage: failure.errMessage)),
+          (_) => emit(AddProductSuccess()),
+        );
+      },
+    );
   }
-  
 }

@@ -5,9 +5,11 @@ import 'package:dashboard/core/utils/constants/colors.dart';
 import 'package:dashboard/core/utils/constants/font_manger.dart';
 import 'package:dashboard/core/utils/constants/styles_manger.dart';
 import 'package:dashboard/features/add_product/domain/entities/add_product_entity.dart';
+import 'package:dashboard/features/add_product/presentation/controller/cubit/add_product_cubit.dart';
 import 'package:dashboard/features/add_product/presentation/view/widgets/custom_check_box.dart';
 import 'package:dashboard/features/add_product/presentation/view/widgets/image_pik_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddProductViewBody extends StatelessWidget {
   AddProductViewBody({super.key});
@@ -113,6 +115,7 @@ class AddProductViewBody extends StatelessWidget {
                         imageFile: imageFile!,
                         isFeatured: isFeatured,
                       );
+                      context.read<AddProductCubit>().addProduct(addProductEntity);
                       
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
