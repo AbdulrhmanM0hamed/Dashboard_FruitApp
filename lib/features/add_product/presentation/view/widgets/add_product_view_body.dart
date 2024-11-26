@@ -106,7 +106,6 @@ class AddProductViewBody extends StatelessWidget {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     if (imageFile != null) {
-
                       AddProductEntity addProductEntity = AddProductEntity(
                         productName: productName,
                         code: code,
